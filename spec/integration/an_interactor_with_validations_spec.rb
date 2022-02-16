@@ -38,6 +38,7 @@ RSpec.describe 'An interactor with validations', type: :integration do
       it { is_expected.to be_a interactor_class.context_class }
       it { is_expected.to be_failure }
       it { is_expected.to have_attributes(other_field: 'failed') }
+
       it 'is expected to have errors on :test_field' do
         expect(subject.errors[:test_field]).not_to be_nil
       end
@@ -84,6 +85,7 @@ RSpec.describe 'An interactor with validations', type: :integration do
         it { is_expected.to be_a interactor_class.context_class }
         it { is_expected.to be_failure }
         it { is_expected.to have_attributes(test_condition: true, other_field: 'failed') }
+
         it 'is expected to have errors on :test_field' do
           expect(subject.errors[:test_field]).not_to be_nil
         end

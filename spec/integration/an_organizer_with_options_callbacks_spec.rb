@@ -44,6 +44,7 @@ RSpec.describe 'An organizer with options callbacks', type: :integration do
     subject { interactor_class.perform(step: 1) }
 
     it { is_expected.to be_a interactor_class.context_class }
+
     it 'is expected to receive #test_before_method once' do
       expect_any_instance_of(interactor_class).to receive(:test_before_method)
         .exactly(:once)

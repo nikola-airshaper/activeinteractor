@@ -25,6 +25,7 @@ RSpec.describe 'An interactor with .before_rollback callbacks', type: :integrati
     subject { interactor_class.perform }
 
     it { is_expected.to be_a interactor_class.context_class }
+
     it 'is expected to receive #test_before_rollback' do
       expect_any_instance_of(interactor_class).to receive(:test_before_rollback)
       subject

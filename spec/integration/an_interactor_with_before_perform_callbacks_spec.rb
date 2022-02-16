@@ -22,6 +22,7 @@ RSpec.describe 'An interactor with .before_perform callbacks', type: :integratio
 
     it { is_expected.to be_a interactor_class.context_class }
     it { is_expected.to be_successful }
+
     it 'is expected to receive #test_before_perform' do
       expect_any_instance_of(interactor_class).to receive(:test_before_perform)
       subject

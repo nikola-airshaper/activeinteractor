@@ -60,11 +60,13 @@ RSpec.describe 'A basic organizer', type: :integration do
       it { expect { subject }.not_to raise_error }
       it { is_expected.to be_a interactor_class.context_class }
       it { is_expected.to be_failure }
+
       it 'is expected to receive #rollback on the first interactor' do
         expect_any_instance_of(test_interactor_1).to receive(:rollback)
           .and_call_original
         subject
       end
+
       it 'is expected not to receive #perform! on the second interactor' do
         expect_any_instance_of(test_interactor_2).not_to receive(:perform!)
         subject
@@ -84,6 +86,7 @@ RSpec.describe 'A basic organizer', type: :integration do
         it { is_expected.to be_a interactor_class.context_class }
         it { is_expected.to be_failure }
         it { expect(subject.errors.count).to eq 1 }
+
         it 'is expected to have errors "something went wrong" on :context' do
           expect(subject.errors[:context]).not_to be_empty
           expect(subject.errors[:context]).to include 'something went wrong'
@@ -107,6 +110,7 @@ RSpec.describe 'A basic organizer', type: :integration do
       it { expect { subject }.not_to raise_error }
       it { is_expected.to be_a interactor_class.context_class }
       it { is_expected.to be_failure }
+
       it 'is expected to receive #rollback on all interactors' do
         expect_any_instance_of(test_interactor_2).to receive(:rollback)
         expect_any_instance_of(test_interactor_1).to receive(:rollback)
@@ -127,6 +131,7 @@ RSpec.describe 'A basic organizer', type: :integration do
         it { is_expected.to be_a interactor_class.context_class }
         it { is_expected.to be_failure }
         it { expect(subject.errors.count).to eq 1 }
+
         it 'is expected to have errors "something went wrong" on :context' do
           expect(subject.errors[:context]).not_to be_empty
           expect(subject.errors[:context]).to include 'something went wrong'
@@ -175,6 +180,7 @@ RSpec.describe 'A basic organizer', type: :integration do
 
       describe '.perform' do
         subject(:result) { interactor_class.perform(context_attributes) }
+
         it { is_expected.to have_attributes(foo: 'foo', bar: 'bar', baz: 'baz', zoo: 'zoo') }
 
         it 'is expected to copy all attributes in the contexts to each interactor' do
@@ -206,6 +212,7 @@ RSpec.describe 'A basic organizer', type: :integration do
 
         describe '.perform' do
           subject(:result) { interactor_class.perform(context_attributes) }
+
           it { is_expected.to have_attributes(foo: 'foo', bar: 'bar') }
 
           it 'is expected to copy all attributes in the contexts to each interactor' do

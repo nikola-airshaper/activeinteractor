@@ -5,6 +5,7 @@ require 'spec_helper'
 RSpec.describe ActiveInteractor::Interactor::Worker do
   context 'with interactor class TestInteractor' do
     before { build_interactor }
+
     let(:interactor) { TestInteractor.new }
 
     RSpec.shared_examples 'an interactor with options' do
@@ -118,6 +119,7 @@ RSpec.describe ActiveInteractor::Interactor::Worker do
         end
 
         it { expect { subject }.to raise_error(ActiveInteractor::Error::ContextFailure) }
+
         it 'is expected to rollback the interactor context' do
           expect_any_instance_of(TestInteractor).to receive(:context_rollback!)
           expect { subject }.to raise_error(ActiveInteractor::Error::ContextFailure)
@@ -135,6 +137,7 @@ RSpec.describe ActiveInteractor::Interactor::Worker do
         end
 
         it { expect { subject }.to raise_error(ActiveInteractor::Error::ContextFailure) }
+
         it 'is expected to rollback the interactor context' do
           expect_any_instance_of(TestInteractor).to receive(:context_rollback!)
           expect { subject }.to raise_error(ActiveInteractor::Error::ContextFailure)

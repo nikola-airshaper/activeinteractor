@@ -39,6 +39,7 @@ RSpec.describe 'An interactor with an existing .context_class', type: :integrati
 
           it { is_expected.to be_an AnInteractorContext }
           it { is_expected.to be_failure }
+
           it 'is expected to have errors on :some_field' do
             expect(subject.errors[:test_field]).not_to be_nil
           end

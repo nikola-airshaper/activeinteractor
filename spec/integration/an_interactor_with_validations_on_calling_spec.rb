@@ -28,6 +28,7 @@ RSpec.describe 'An interactor with validations on :calling', type: :integration 
 
       it { is_expected.to be_an TestInteractor::Context }
       it { is_expected.to be_failure }
+
       it 'is expected to have errors on :some_field' do
         expect(subject.errors[:test_field]).not_to be_nil
       end
